@@ -1,10 +1,5 @@
-input = []
+from utils/utils.py import File
 
-
-with open("inputs/i01") as f:
-	for l in f.readlines():
-		l = int(l)
-		input.append(l)
 def calcFuel(n):
 	total = 0
 	total += int(n / 3 - 2)
@@ -18,5 +13,7 @@ def fuelFuel(input):
 			total += fuel
 			fuel = calcFuel(fuel)
 	return (total)
+
+input = fileToIntList("inputs/i01")
 
 print (fuelFuel(input))
