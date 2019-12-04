@@ -1,21 +1,11 @@
 from collections import defaultdict
 
-
-
 def getInput(filename):
 	ret = []
-	cool = []
 	with open (filename) as f:
 		for line in f:
 			ret.append(line)
 	return(ret)
-
-def makeMap(x, y):
-	ret = {}
-	for i in range(0, x):
-		for j in range(0, y):
-			ret[(i, j)] = 0
-	return (ret)
 
 def processWires(input):
 	wires = []
@@ -50,8 +40,6 @@ def processWires(input):
 					x += 1
 		wires.append(wire)
 	return (wires)
-
-
 
 def manhattenDistance(coords):
 	ret = abs(coords[0]) + abs(coords[1])
