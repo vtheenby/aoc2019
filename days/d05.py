@@ -15,7 +15,7 @@ def getInput(filename):
 
 #for opcode 1
 
-def applyAdd(intc, x):
+def applyAdd(intc, x, modes):
 	n1 = intc[x + 1]
 	n2 = intc[x + 2]
 	pos = intc[x + 3]
@@ -25,11 +25,12 @@ def applyAdd(intc, x):
 
 #for opcode 2
 
-def applyMul(intc, x):
+def applyMul(intc, x, modes):
 	n1 = intc[x + 1]
 	n2 = intc[x + 2]
 	pos = intc[x + 3]
-	val = intc[n1] * intc[n2]
+	l = setModes(n1, n2, modes)
+	val = intc[l[0]] * intc[l[1]]
 	intc[pos] = val
 	return (intc)
 
@@ -43,16 +44,22 @@ def applyStore(intc, x, input):
 def outputVal(intc, x):
 	pass
 
-def setModes(n):
-	if len(n) == se
+def setModes(intc, n1, n2, modes):
+	l = []
+	i = 0
+	while i < len(modes) - 2:
+		pass
+
 
 def getModes(n):
 	n = [int(x) for x in str(n)]
-	del n[-2]
-	l = len(n)
-	modes = []
-	if 
-	return (modes)
+	while (len(n) < 5):
+		n.insert(0, 0)
+	if (n[-1] is 4 or n[-1] is 3):
+		del n[0:2]
+	del n[-1]
+	del n[-1]
+	return (n)
 
 def intCode(intc, input):
 	pos = 0
@@ -61,16 +68,16 @@ def intCode(intc, input):
 		op.opcode = intc[pos + 0] % 100
 		op.modes = getModes(intc[pos + 0])
 		if op.opcode is 1:
-			intc = applyAdd(intc, pos, modes)
+			intc = applyAdd(intc, pos, op.modes)
 			pos += 4
 		elif op.opcode is 2:
-			intc = applyMul(intc, pos, modes)
+			intc = applyMul(intc, pos, op.modes)
 			pos += 4
 		elif op.opcode is 3:
-			intc = applyStore(intc, pos, input, modes)
+			intc = applyStore(intc, pos, input, op.modes)
 			pos += 2
 		elif op.opcode is 4:
-			outputVal(intc, pos, modes)
+			outputVal(intc, pos, op.modes)
 			pos += 2
 
-n = getModes(2019)
+print(getModes('103'))
